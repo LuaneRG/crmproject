@@ -1,6 +1,7 @@
 "use client";
 
 import Clients from "../components/Clients";
+import AddClients from "../components//AddClients";
 
 import { useState } from "react";
 
@@ -20,6 +21,7 @@ export default function Home() {
                     <Clients client={client} />
                 ))}
             </div>
+            <AddClients></AddClients>
         </div>
     );
 }
