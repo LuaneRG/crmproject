@@ -1,14 +1,42 @@
 import { useState } from "react";
 
-const AddClient = () => {
+const AddClient = (addingClients) => {
+    const [valuename, setValueName] = useState("");
+    const [valuemail, setValueMail] = useState("");
+    const [category, setCategory] = useState("");
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        if (!valuename || !valuemail || !category) return;
+        addingClients(valuename, valuemail, category);
+        setValueName("");
+        setValueMail("");
+        setCategory("");
+    }
+
     return (
         <div>
-            <h2>Adicionar Cliente</h2>
-            <form>
+            <h2 className="font-bold text-2xl">Adicionar Clientes</h2>
+            <form onSubmit={handleSubmit}>
                 <h3>Nome:</h3>
-                <input type="text" placeholder="Digite o nome" />
+                <input
+                    type="text"
+                    placeholder="Digite o nome"
+                    value={valuename}
+                    onChange={(e) => setValueName(e.target.value)}
+                />
+                <h3>Email:</h3>
+                <input
+                    value={valuemail}
+                    type="email"
+                    placeholder="Digite o email"
+                    onChange={(e) => setValueMail(e.target.value)}
+                />
                 <h3>Setor de Interesse:</h3>
-                <select>
+                <select
+                    value={category}
+                    onChange={(e) => setCategory(e.target.value)}
+                >
                     <option value="" hidden>
                         Selecione:
                     </option>
